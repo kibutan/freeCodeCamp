@@ -1,44 +1,61 @@
-function convertToRoman(num) {
+  function convertToRoman(num) {
   // let num_str = num.toString();
   let roman = "";
-  let roman_num = {"I":1,"V":5,"X":10,"L":50,"C":100,"D":500,"M":1000}
+  let numStr = num.toString()
+  let roman_num = [
+      {id:"M",value:1000},
+      {id:"D",value:500},
+      {id:"C",value:100},
+      {id:"L",value:50},
+      {id:"X",value:10},
+      {id:"V",value:5},
+      {id:"I",value:1}
+    ];
   //ローマ数字のルール
   let bigger_digit = "";
-  //でっかい方からにじゅんばんを入Keysれ替える
-  roman_num = Object.keys(roman_num).map((k) => ({ key:k, value: roman_num[k]}));//obj->arr
-  roman_num.sort((a,b) => b.value - a.value);//sort
-  roman_num = Object.assign({},...roman_num.map((item) =>({ [item.key]:item.value,})));//arr->obj
 
   //convert
+  // console.log(roman_num);
+  let i=0
+  
+  let find = roman_num.find((element) => element.value <= num);
   console.log(num);
-  for (const key of Object.keys(roman_num)){
-    console.log(roman_num[key],roman_num[key].toString()[0],Math.floor(9*roman_num[key]/10));
-    if(num >= roman_num[key]){
-      if(bigger_digit != ""){
-        roman = roman + key + bigger_digit;
-        bigger_digit = ""
-        num %= roman_num[key]; 
+  let find_lower = find;
+  let find_upper = find;
+  // for (let i = 0; i <= numStr.length; i++){
+    while(num >= 1){
+      find = roman_num.find((element) => element.value <= num);
+      // console.log(key);
+      if(num.toString()[0] == 4){
+        console.log(find.id,"*",1);
+        roman += find.id;
+        num += find.value;
+        // console.log("After",num)
+        // find = roman_num.find((element) => element.value <= num);
+        // console.log(find.id,"*******",1);
+        // roman += find.id;
+        // num %= find.value;
       }
-      console.log("num >= *",roman_num[key]);
-      let digit = Math.floor(num/roman_num[key]);
-      for (let i = 0; i < digit ; i++)roman += key;
-      num %= roman_num[key];
-      console.log("roman digit",key,digit,roman);
-    }else if(roman_num[key] >num){
-      console.log("more small",num,(9*roman_num[key])/10);
-      if(roman_num[key].toString()[0] == 1 && num >= (9*roman_num[key])/10 ){
-        bigger_digit = key;
-        num -= roman_num[key] -num;
-        }
-      else if(roman_num[key].toString()[0] == 5 && num >= roman_num[key]*0.8)bigger_digit = key;
-    }
-  }console.log("-------------------");
-  // console.log(num[0])
+      else if(num.toString()[0] == 9){
+        find_lower = roman_num.find((element) => element.value <= Math.floor(num/9));
+        find_upper = roman_num.find((element) => element.value <= num);
+        console.log(find_lower.id);
+        roman += find_lower.id;
+        // num += find.value/5;
+        num += find_lower.value
+        find = roman_num.find((element) => element.value <= num);
+        // roman += find.id;
+        // console.log("After",num,find.value)
+      }
+      else{
+        console.log(find.id,"*",Math.floor(num/find.value));
+        for (let i = 0 ; i < Math.floor(num/find.value) ; i++)roman += find.id;
+        num %= find.value;
+      }
+    };
+    console.log("-----",roman,"\n");
+    return roman;
+  }
 
-  // if(num >= 1000){
-  //   console.log("M * ",Math.floor(num/1000));
-  //   roman += "M"*Math.floor(num/1000);
-  //   num %= 1000;
-  return roman;
-}
+
 convertToRoman(36);
