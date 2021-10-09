@@ -51,7 +51,6 @@ class Category:
       return True
     else:return False
 
-
 def create_spend_chart(categories):
   sum = 0
   rate={}
