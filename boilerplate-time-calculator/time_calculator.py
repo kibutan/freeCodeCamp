@@ -5,8 +5,7 @@ def add_time(start, duration,day = False):
     if start_ampm == "PM":
       start_ampm = "AM"
       start_hh = start_hh + 12
-    # print(start_hh,start_mm,start_ampm)
-    # print(duration_hh,duration_mm)
+
     days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"] 
     start_day = ""
     if day : start_day = day.lower()
