@@ -21,7 +21,6 @@ class Hat:
       for i in range(0, num):
         # print(num,len(self.contents),i )
         index = random.randrange(0,len(self.contents))
-        # print("index+++++++++++++++++++++++++++",index,"/",num,self.contents[index])
         draw_ball = self.contents.pop(index)
         self.draw_list.append(draw_ball)
     return self.draw_list
