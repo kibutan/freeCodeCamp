@@ -81,5 +81,4 @@ def create_spend_chart(categories):
   graph = graph.rstrip()
   graph += "  "
   print(graph)
-
   return graph
