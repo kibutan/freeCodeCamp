@@ -6,7 +6,7 @@ function whatIsInAName(collection, source) {
   let arr_copy = [];
   collection.filter((obj,index,self) => {
     // console.log(obj,index)
-    console.log("比較",obj,"--------------",source)
+    console.log("比較",obj,"-------------",source)
     let badCase = false;
     for (const key of Object.keys(source)){
       if(!(key in obj)){
