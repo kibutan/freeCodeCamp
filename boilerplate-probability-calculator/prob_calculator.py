@@ -7,7 +7,7 @@ class Hat:
   def __init__(self,**kwargs):
     self.contents = []
     self.draw_list=[]
-    # print(kwargs)
+
     # self.contents = *kwargs
     for i in kwargs:
       for j in range(kwargs[i]):
